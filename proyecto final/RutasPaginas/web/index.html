@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -6,9 +6,12 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Starter Template · Bootstrap</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Traza de Rutas</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/starter-template/">
+    <script type="text/javascript" src="js/funciones.js"></script>
 
     <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,89 +32,11 @@
           font-size: 3.5rem;
         }
       }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
-    <script >
-    function creaarBat()
-    {
-        var textToWrite = document.getElementById("inputTextToSave").value;
-        var comandoRuta = "echo este programa mostrara la ruta para llegar a "+textToWrite+" \n\r pause \n\r tracert ";
-        var comandoGuardarTxt=" > ruta.txt \n\r pause";
-        var textFileAsBlob = new Blob([comandoRuta+textToWrite+comandoGuardarTxt], {type:'text/plain'});
-        var fileNameToSaveAs = "Ruta.bat";
 
-
-        var downloadLink = document.createElement("a");
-
-        downloadLink.download = fileNameToSaveAs;
-
-        downloadLink.innerHTML = "My Hidden Link";
-
-
-        window.URL = window.URL || window.webkitURL;
-
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.onclick = destroyClickedElement;
-        downloadLink.style.display = "none";
-        document.body.appendChild(downloadLink);
-
-        downloadLink.click();
-    }
-
-    function destroyClickedElement(event)
-    {
-        document.body.removeChild(event.target);
-    }
-
-    var archivoTxt = new XMLHttpRequest();
-    var fileRuta = "Ruta.txt";
-    function leerArchivo() {
-      archivoTxt.open("GET",fileRuta,false);
-      archivoTxt.send(null);
-      var txt = archivoTxt.responseText;
-      mostrarContenido(txt);
-    }
-    function mostrarContenido(archivo){
-      var accionador = false;
-      var ip = "";
-      for (var i=0; i<archivo.length; i++)
-          {
-            var caracter = archivo[i];
-            if (caracter == "]"){
-                accionador=false;
-                buscarGeolocation(ip);
-                ip = "";
-              }
-            if(accionador == true){
-              ip += caracter;
-            }
-            if (caracter == "["){
-                accionador=true;
-              }
-
-          }
-    }
-
-    function buscarGeolocation(ip){
-      var requestURL = 'http://ip-api.com/json/'+ip;
-      var request = new XMLHttpRequest();
-      request.open('GET', requestURL);
-      request.responseType = 'json';
-      request.send();
-      request.onload = function() {
-      var geolocation = request.response;
-      populateHeader(geolocation);
-    }
-    }
-    var allDirection = "<br>Estos son los saltos para llegar a DESTINO: <br>";
-    function populateHeader(jsonObj) {
-      allDirection +="<br> Direccion ip: "+ jsonObj['query']+" <br> Pais: "+jsonObj['country']+" <br> Ciudad: "+jsonObj['city']+" <br> ISP: "+jsonObj['isp']+"<br> <br>";
-       document.getElementById("geolocal").innerHTML = allDirection;
-    }
-
-
-    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -142,9 +67,11 @@
     <h1>Digite la pagina para conocer su ruta</h1>
     <br>
     <button onclick="leerArchivo()" class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-
+<a class="nav-link" href="mapa.html">mapa</a>
   <div id="geolocal"></div>
 </main><!-- /.container -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+
+  </body>
 </html>

@@ -1,4 +1,4 @@
-echo este programa mostrara la ruta para llegar a facebook.com 
+echo este programa mostrara la ruta para llegar a amazon.com 
  pause 
- tracert facebook.com > ruta.txt 
+ tracert amazon.com > ruta.txt 
  pause
